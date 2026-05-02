@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | CMSN College Gorakhpur{% endblock %}
+
+{% block extra_css %}
+.page-hero {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    padding: 60px 0 40px;
+}
+.contact-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.contact-info-panel {
+    background: linear-gradient(160deg, var(--primary-dark), var(--primary));
+    color: #fff;
+    padding: 36px;
+}
+.contact-form-panel { padding: 36px; }
+.contact-info-item { display: flex; gap: 16px; margin-bottom: 24px; }
+.contact-info-item .icon-wrap {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: rgba(255,255,255,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--gold);
+}
+.contact-info-item .label { font-size: 0.75rem; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.5px; }
+.contact-info-item .value { font-weight: 600; font-size: 0.92rem; margin-top: 2px; }
+.contact-info-item a { color: #fff; text-decoration: none; }
+.contact-info-item a:hover { color: var(--gold); }
+.form-label { font-weight: 600; font-size: 0.85rem; color: var(--gray-700); margin-bottom: 4px; }
+.form-control { border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 10px 14px; font-size: 0.88rem; transition: border-color 0.2s; }
+.form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,86,167,0.1); }
+.map-embed { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+    <div class="container">
+        <div class="section-badge" style="background:rgba(255,255,255,0.15); color:#fff;">Get in Touch</div>
+        <h1 class="section-title" style="color:#fff;">Contact <span style="color:var(--gold);">Us</span></h1>
+        <p style="color:rgba(255,255,255,0.75); max-width:500px;">Have a question about admission, courses or hostel? We're here to help.</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="contact-card">
+            <div class="row g-0">
+                <!-- Info Panel -->
+                <div class="col-lg-4">
+                    <div class="contact-info-panel h-100">
+                        <h4 class="fw-bold mb-4" style="color:#fff;">Contact Information</h4>
+                        <div class="contact-info-item">
+                            <div class="icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <div class="label">Address</div>
+                                <div class="value">N.H. 28, Rudrapura Kushmi Kasia Road, Gorakhpur-Kushinagar Rd, Jungle Ramgarh Urf Sarka, UP 273002</div>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon-wrap"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <div class="label">Phone & WhatsApp</div>
+                                <div class="value"><a href="tel:+919839064502">+91 98390 64502</a></div>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="label">Email</div>
+                                <div class="value"><a href="mailto:cmsnnursing@gmail.com">cmsnnursing@gmail.com</a></div>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon-wrap"><i class="fas fa-globe"></i></div>
+                            <div>
+                                <div class="label">Website</div>
+                                <div class="value"><a href="https://www.cmsnnursingh.com" target="_blank">www.cmsnnursingh.com</a></div>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon-wrap"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <div class="label">Office Hours</div>
+                                <div class="value">Mon – Sat: 9:00 AM – 5:00 PM</div>
+                            </div>
+                        </div>
+                        <hr style="border-color:rgba(255,255,255,0.15); margin:24px 0;">
+                        <p style="font-size:0.8rem; opacity:0.65;">Affiliated to UPSMF Lucknow · Approved by INC New Delhi</p>
+                        <div class="d-flex gap-2 mt-2">
+                            <a href="https://www.facebook.com/amresh.thakur.3998263" target="_blank" style="width:36px;height:36px;background:rgba(255,255,255,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://wa.me/919839064502" target="_blank" style="width:36px;height:36px;background:rgba(255,255,255,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Panel -->
+                <div class="col-lg-8">
+                    <div class="contact-form-panel">
+                        <h4 class="fw-bold mb-1">Send Us a Message</h4>
+                        <p class="text-muted small mb-4">We'll get back to you within 24 hours on working days.</p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Your Name *</label>
+                                    {{ form.name }}
+                                    {% if form.name.errors %}<div class="text-danger small mt-1">{{ form.name.errors.0 }}</div>{% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address *</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number</label>
+                                    {{ form.phone }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Subject *</label>
+                                    {{ form.subject }}
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Message *</label>
+                                    {{ form.message }}
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-primary-custom w-100 py-3">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-embed mt-4">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.4!2d83.4855754!3d26.7467686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3993e143620e1c55%3A0x72fefeba15427d9a!2sChandramauli%20Swaminath%20Nursing%20%26%20Paramedical%20College!5e0!3m2!1sen!2sin!4v1234567890"
+                width="100%" height="380" style="border:0; display:block;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</section>
+{% endblock %}

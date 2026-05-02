@@ -1,0 +1,811 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}CMSN College Gorakhpur | INC Approved Nursing College{% endblock %}
+
+{% block extra_css %}
+/* ===== HERO ===== */
+.hero {
+    min-height: 88vh;
+    background: linear-gradient(135deg, #0f3d7a 0%, #1a56a7 45%, #1e6fbf 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.4);
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 30px;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 32px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-hero-primary {
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: all 0.2s;
+    box-shadow: 0 6px 20px rgba(245,166,35,0.4);
+}
+.btn-hero-primary:hover { background: #d48c1a; color: #000; transform: translateY(-2px); }
+.btn-hero-outline {
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: all 0.2s;
+}
+.btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); color: #fff; }
+.hero-logo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero-logo {
+    width: min(340px, 90%);
+    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.4));
+    animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+.hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.75rem;
+    text-align: center;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* ===== STATS ===== */
+.stats-bar {
+    background: var(--white);
+    box-shadow: var(--shadow-lg);
+    border-radius: 16px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 10;
+}
+.stat-item {
+    text-align: center;
+    padding: 28px 20px;
+    border-right: 1px solid var(--gray-200);
+}
+.stat-item:last-child { border-right: none; }
+.stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+.stat-label { font-size: 0.78rem; color: var(--gray-600); font-weight: 500; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-icon { font-size: 1.4rem; margin-bottom: 8px; }
+
+/* ===== PRINCIPAL ===== */
+.principal-card {
+    background: var(--primary-light);
+    border-left: 5px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 36px;
+}
+.principal-card .quote-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    opacity: 0.2;
+    line-height: 1;
+}
+
+/* ===== FACILITIES ===== */
+.facility-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s;
+    height: 100%;
+}
+.facility-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-6px);
+}
+.facility-icon {
+    width: 64px; height: 64px;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+}
+.facility-card h5 { font-weight: 700; font-size: 1rem; color: var(--gray-900); margin-bottom: 8px; }
+.facility-card p { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; }
+
+/* ===== PROGRAMMES ===== */
+.prog-tabs .nav-link {
+    font-weight: 600;
+    color: var(--gray-600);
+    border: 2px solid var(--gray-200);
+    border-radius: 8px !important;
+    margin-right: 8px;
+    padding: 8px 20px;
+    font-size: 0.88rem;
+}
+.prog-tabs .nav-link.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.prog-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+.prog-card-header { background: var(--primary); color: #fff; padding: 20px 24px; }
+.prog-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+.prog-meta-item {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+}
+.prog-meta-item strong { display: block; color: var(--primary); font-size: 1rem; }
+
+/* ===== NOTICES ===== */
+.notice-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gray-100);
+}
+.notice-item:last-child { border-bottom: none; }
+.notice-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 7px;
+    flex-shrink: 0;
+}
+.notice-item a { color: var(--gray-700); text-decoration: none; font-size: 0.87rem; font-weight: 500; line-height: 1.5; }
+.notice-item a:hover { color: var(--primary); }
+.notice-date { font-size: 0.72rem; color: var(--gray-600); margin-top: 3px; }
+
+/* ===== ELIGIBILITY ===== */
+.elig-card {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 36px;
+}
+.elig-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.9rem;
+}
+.elig-item:last-child { border-bottom: none; }
+.elig-icon { color: var(--gold); font-size: 1rem; margin-top: 2px; }
+
+/* ===== TRAINING ===== */
+.training-hospital {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: 10px; padding: 14px 18px; margin-bottom: 10px;
+}
+.training-hospital .hosp-icon {
+    width: 42px; height: 42px;
+    background: var(--primary-light); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary); font-size: 1.1rem; flex-shrink: 0;
+}
+.training-hospital .hosp-name { font-weight: 600; font-size: 0.88rem; color: var(--gray-900); }
+.training-hospital .hosp-duration { font-size: 0.78rem; color: var(--gray-600); }
+
+/* ===== CTA ===== */
+.cta-section {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+.cta-section::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    top: -100px; right: -100px;
+}
+.cta-section h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 12px; }
+.cta-section p { opacity: 0.8; margin-bottom: 28px; font-size: 1.05rem; }
+
+/* ===== RULES ACCORDION ===== */
+.accordion-button:not(.collapsed) { background: var(--primary-light); color: var(--primary); }
+
+/* ===== GALLERY PREVIEW ===== */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.gallery-item { border-radius: 10px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; position: relative; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(15,61,122,0.7);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+    color: #fff; font-size: 1.5rem;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-placeholder {
+    background: linear-gradient(135deg, var(--primary-light), #dbeafe);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary); font-size: 2.5rem; aspect-ratio: 4/3;
+    border-radius: 10px;
+}
+{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="container position-relative">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <div class="hero-badge">
+                    <i class="fas fa-certificate"></i>
+                    INC Approved Institution · UPSMF Affiliated
+                </div>
+                <h1>Shaping Tomorrow's <span>Healthcare Heroes</span></h1>
+                <p>Excellence in nursing & paramedical education through rigorous academic training and hands-on clinical exposure at Gorakhpur's premier college.</p>
+                <div class="hero-actions">
+                    <a href="{% url 'admission:admission' %}" class="btn-hero-primary">
+                        <i class="fas fa-pen me-2"></i>Apply for Admission 2026–27
+                    </a>
+                    <a href="#programmes" class="btn-hero-outline">
+                        <i class="fas fa-book-open me-2"></i>Explore Courses
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 hero-logo-wrap d-none d-lg-flex">
+                <img src="{% static 'core/images/college_logo.jpeg' %}" alt="CMSN College" class="hero-logo">
+            </div>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <i class="fas fa-chevron-down d-block"></i>Scroll
+    </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="container">
+    <div class="stats-bar">
+        <div class="row g-0">
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-icon text-primary"><i class="fas fa-user-graduate"></i></div>
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Enrolled Students</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-icon" style="color:var(--gold);"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Expert Faculty</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-icon" style="color:#22c55e;"><i class="fas fa-book-medical"></i></div>
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Programmes</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-icon" style="color:#ef4444;"><i class="fas fa-hospital"></i></div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Clinical Training</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PRINCIPAL MESSAGE ===== -->
+<section class="py-5 mt-4">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-5">
+                <div class="section-badge"><i class="fas fa-quote-left me-1"></i> Principal's Message</div>
+                <h2 class="section-title mb-3">Nurturing <span>Compassionate</span> Healthcare Professionals</h2>
+                <p class="text-muted" style="line-height:1.8;">Welcome to Chandramauli Swaminath Nursing & Paramedical College. Our mission is to create skilled healthcare professionals equipped with modern knowledge, ethical values, and clinical excellence.</p>
+                <p class="text-muted mt-2" style="line-height:1.8;">We believe in holistic education that combines rigorous academic training with hands-on clinical exposure, preparing our students to serve communities with dedication and compassion.</p>
+                <div class="d-flex align-items-center gap-3 mt-4">
+                    <div>
+                        <div style="font-weight:700; color: var(--gray-900);">The Principal</div>
+                        <div style="font-size:0.82rem; color:var(--gray-600);">Chandramauli Swaminath Nursing & Paramedical College</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="principal-card">
+                    <div class="quote-icon">"</div>
+                    <p class="fs-5" style="font-style:italic; color:var(--primary-dark); line-height:1.8; margin-top:-10px;">"Education in nursing is not merely about medical knowledge — it is about shaping individuals who embody compassion, responsibility, and the drive to serve humanity at its most vulnerable moments."</p>
+                    <div class="mt-3 d-flex gap-3">
+                        <div class="text-center">
+                            <i class="fas fa-award fa-2x" style="color:var(--gold);"></i>
+                            <div style="font-size:0.75rem; font-weight:600; color:var(--gray-700); margin-top:4px;">INC Approved</div>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-university fa-2x" style="color:var(--gold);"></i>
+                            <div style="font-size:0.75rem; font-weight:600; color:var(--gray-700); margin-top:4px;">UPSMF Affiliated</div>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-calendar-check fa-2x" style="color:var(--gold);"></i>
+                            <div style="font-size:0.75rem; font-weight:600; color:var(--gray-700); margin-top:4px;">Est. 2000+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FACILITIES ===== -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-4">
+            <div class="section-badge">Our Facilities</div>
+            <h2 class="section-title">World-Class <span>Infrastructure</span></h2>
+            <p class="text-muted mt-2">Everything students need to learn, grow, and excel in healthcare.</p>
+        </div>
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="facility-card">
+                    <div class="facility-icon" style="background:#e8f0fb;"><i class="fas fa-flask" style="color:var(--primary);"></i></div>
+                    <h5>Modern Labs</h5>
+                    <p>Advanced nursing & paramedical laboratories with the latest equipment for hands-on learning.</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="facility-card">
+                    <div class="facility-icon" style="background:#fef9e7;"><i class="fas fa-book" style="color:var(--gold-dark);"></i></div>
+                    <h5>Library</h5>
+                    <p>Extensive digital & physical medical resources for deep, comprehensive learning.</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="facility-card">
+                    <div class="facility-icon" style="background:#f0fdf4;"><i class="fas fa-hospital-user" style="color:#16a34a;"></i></div>
+                    <h5>Clinical Training</h5>
+                    <p>Real-world hospital-based practical exposure and supervised patient care practice.</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="facility-card">
+                    <div class="facility-icon" style="background:#fef2f2;"><i class="fas fa-home" style="color:#dc2626;"></i></div>
+                    <h5>Hostel</h5>
+                    <p>Safe, comfortable and secure accommodation for outstation students.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROGRAMMES ===== -->
+<section class="py-5" id="programmes">
+    <div class="container">
+        <div class="text-center mb-4">
+            <div class="section-badge">Programmes</div>
+            <h2 class="section-title">Nursing <span>Programmes</span> Offered</h2>
+            <p class="text-muted mt-2">Select the right pathway for your nursing career.</p>
+        </div>
+
+        <ul class="nav prog-tabs mb-4" id="progTab">
+            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#gnm">GNM</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#anm">ANM</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- GNM -->
+            <div class="tab-pane fade show active" id="gnm">
+                <div class="prog-card">
+                    <div class="prog-card-header">
+                        <h4 class="mb-1 fw-bold">General Nursing & Midwifery (GNM)</h4>
+                        <p class="mb-0" style="opacity:0.8; font-size:0.88rem;">Prepares nurses for hospital and community roles with clinical skill and leadership mindset.</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="prog-meta">
+                            <div class="prog-meta-item"><strong>3 Years</strong>Duration</div>
+                            <div class="prog-meta-item"><strong>50 Seats</strong>Intake</div>
+                            <div class="prog-meta-item"><strong>12th Science</strong>Eligibility</div>
+                            <div class="prog-meta-item"><strong>Contact</strong>Fee Details</div>
+                        </div>
+                        <p style="font-size:0.9rem; color:var(--gray-600); line-height:1.75;">The General Nursing & Midwifery programme develops compassionate and capable nurses who can function as effective members of the healthcare team, delivering care in hospitals and community settings.</p>
+                        <a href="{% url 'admission:admission' %}" class="btn-primary-custom mt-2">Apply Now <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- ANM -->
+            <div class="tab-pane fade" id="anm">
+                <div class="prog-card">
+                    <div class="prog-card-header">
+                        <h4 class="mb-1 fw-bold">Auxiliary Nurse Midwifery (ANM)</h4>
+                        <p class="mb-0" style="opacity:0.8; font-size:0.88rem;">Prepares students for community health centres and maternal-child care.</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="prog-meta">
+                            <div class="prog-meta-item"><strong>2 Years</strong>Duration</div>
+                            <div class="prog-meta-item"><strong>Limited</strong>Intake</div>
+                            <div class="prog-meta-item"><strong>12th Science</strong>Eligibility</div>
+                            <div class="prog-meta-item"><strong>Contact</strong>Fee Details</div>
+                        </div>
+                        <p style="font-size:0.9rem; color:var(--gray-600); line-height:1.75;">ANM training prepares students for community health centres and maternal-child care with the same professional posting pattern to ensure experience in primary healthcare, clinical procedures and patient support.</p>
+                        <a href="{% url 'admission:admission' %}" class="btn-primary-custom mt-2">Apply Now <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== NOTICES + ELIGIBILITY ===== -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Notices -->
+            <div class="col-lg-6">
+                <div class="section-badge">Latest Updates</div>
+                <h3 class="section-title mb-4">Important <span>Notices</span></h3>
+                <div class="bg-white rounded-3 p-3 shadow-sm">
+                    {% if notices %}
+                    {% for notice in notices %}
+                    <div class="notice-item">
+                        <div class="notice-dot"></div>
+                        <div>
+                            {% if notice.link %}
+                            <a href="{{ notice.link }}" target="_blank">{{ notice.title }}</a>
+                            {% else %}
+                            <span style="font-size:0.87rem; font-weight:500; color:var(--gray-700);">{{ notice.title }}</span>
+                            {% endif %}
+                            <div class="notice-date">{{ notice.date_posted }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="notice-item">
+                        <div class="notice-dot"></div>
+                        <div><a href="https://upsmfac.org/site/writereaddata/UploadNews/corrigendum/pdf/C_202604181821041406.pdf" target="_blank">DIPLOMA IN GENERAL NURSING & MIDWIFERY ADMISSION 2026-27</a></div>
+                    </div>
+                    <div class="notice-item">
+                        <div class="notice-dot"></div>
+                        <div><a href="https://upsmfac.org/en/news" target="_blank">Reminder – Filling of Annual Self Assessment (UPSMF)</a></div>
+                    </div>
+                    <div class="notice-item">
+                        <div class="notice-dot"></div>
+                        <div><a href="https://online.upsmfac.org/Online/Result.aspx" target="_blank">Examination Results – Visit UPSMFAC Portal</a></div>
+                    </div>
+                    <div class="notice-item">
+                        <div class="notice-dot"></div>
+                        <div><a href="https://www.indiannursingcouncil.org/special-attention" target="_blank">INC Special Attention Notice for Students</a></div>
+                    </div>
+                    <div class="notice-item">
+                        <div class="notice-dot"></div>
+                        <div><a href="https://upsmfac.org/en/news" target="_blank">Nursing/Paramedical Fee Revision Notification – UPSMF</a></div>
+                    </div>
+                    {% endif %}
+                    <div class="mt-3 pt-2 border-top text-center">
+                        <a href="https://upsmfac.org/en/news" target="_blank" class="btn-outline-custom" style="padding:8px 20px; font-size:0.82rem;">
+                            View All Notices <i class="fas fa-external-link-alt ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Eligibility -->
+            <div class="col-lg-6">
+                <div class="section-badge">Admission Criteria</div>
+                <h3 class="section-title mb-4">Eligibility <span>Criteria</span></h3>
+                <div class="elig-card">
+                    <div class="elig-item">
+                        <i class="fas fa-user-clock elig-icon mt-1"></i>
+                        <div><strong>Age Limit</strong><br>Minimum <strong>17 years</strong> and Maximum <strong>30 years</strong> as on date of admission.</div>
+                    </div>
+                    <div class="elig-item">
+                        <i class="fas fa-graduation-cap elig-icon mt-1"></i>
+                        <div><strong>Academic Qualification</strong><br>10+2 with Science (Physics, Chemistry, Biology) with at least <strong>45% marks</strong> from CBSE or UP Board.</div>
+                    </div>
+                    <div class="elig-item">
+                        <i class="fas fa-calendar-alt elig-icon mt-1"></i>
+                        <div><strong>Admission Schedule</strong><br>Conducted <strong>once every academic year</strong> as per INC & UPSMF regulations.</div>
+                    </div>
+                    <div class="elig-item">
+                        <i class="fas fa-heartbeat elig-icon mt-1"></i>
+                        <div><strong>Medical Fitness</strong><br>Candidate must be <strong>medically fit</strong> and free from any communicable disease.</div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="{% url 'admission:admission' %}" class="btn-hero-primary" style="font-size:0.88rem; padding:12px 24px;">
+                            <i class="fas fa-pen me-2"></i>Fill Admission Form
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CLINICAL TRAINING ===== -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <div class="section-badge">Clinical Training</div>
+            <h2 class="section-title">Training <span>Hospital Partners</span></h2>
+            <p class="text-muted mt-2">Real-world clinical exposure at government hospitals in Gorakhpur.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <h5 class="fw-bold mb-3"><i class="fas fa-stethoscope me-2 text-primary"></i>GNM Clinical Internship</h5>
+                <p class="text-muted small mb-3">3-year programme with structured 6-month hospital internship — 16 duty hours/week.</p>
+                <div class="training-hospital">
+                    <div class="hosp-icon"><i class="fas fa-hospital"></i></div>
+                    <div>
+                        <div class="hosp-name">CHC Hospital, Piparaich, Gorakhpur</div>
+                        <div class="hosp-duration">Duration: 1 Month</div>
+                    </div>
+                </div>
+                <div class="training-hospital">
+                    <div class="hosp-icon"><i class="fas fa-train"></i></div>
+                    <div>
+                        <div class="hosp-name">Railway Hospital, Gorakhpur</div>
+                        <div class="hosp-duration">Duration: 1 Month</div>
+                    </div>
+                </div>
+                <div class="training-hospital">
+                    <div class="hosp-icon"><i class="fas fa-hospital-alt"></i></div>
+                    <div>
+                        <div class="hosp-name">District Women Hospital, Gorakhpur</div>
+                        <div class="hosp-duration">Duration: 4 Months (Primary)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="fw-bold mb-3"><i class="fas fa-baby me-2 text-primary"></i>ANM Clinical Training</h5>
+                <p class="text-muted small mb-3">Community health centres and maternal-child care specialist training.</p>
+                <div class="training-hospital">
+                    <div class="hosp-icon"><i class="fas fa-hospital"></i></div>
+                    <div>
+                        <div class="hosp-name">CHC Hospital, Piparaich, Gorakhpur</div>
+                        <div class="hosp-duration">Duration: 1 Month</div>
+                    </div>
+                </div>
+                <div class="training-hospital">
+                    <div class="hosp-icon"><i class="fas fa-train"></i></div>
+                    <div>
+                        <div class="hosp-name">Railway Hospital, Gorakhpur</div>
+                        <div class="hosp-duration">Duration: 1 Month</div>
+                    </div>
+                </div>
+                <div class="training-hospital">
+                    <div class="hosp-icon"><i class="fas fa-hospital-alt"></i></div>
+                    <div>
+                        <div class="hosp-name">District Women Hospital, Gorakhpur</div>
+                        <div class="hosp-duration">Duration: 4 Months (Primary)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== COLLEGE RULES ===== -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-4">
+            <div class="section-badge">Guidelines</div>
+            <h2 class="section-title">College <span>Rules & Guidelines</span></h2>
+        </div>
+        <div class="accordion" id="rulesAccordion">
+            <div class="accordion-item border mb-2 rounded-3 overflow-hidden">
+                <h2 class="accordion-header">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#antiRagging">
+                        <i class="fas fa-shield-alt me-2 text-danger"></i>Anti-Ragging Policy
+                    </button>
+                </h2>
+                <div id="antiRagging" class="accordion-collapse collapse show" data-bs-parent="#rulesAccordion">
+                    <div class="accordion-body" style="font-size:0.9rem; line-height:1.8;">
+                        Ragging is <strong>strictly prohibited</strong> on campus. Every student must respect seniors, peers and staff at all times. Any form of harassment must be reported immediately to college authorities. Violators face suspension, expulsion, and legal action as per UGC norms.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item border mb-2 rounded-3 overflow-hidden">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#leavePolicy">
+                        <i class="fas fa-calendar-times me-2 text-warning"></i>Vacation & Leave Policy
+                    </button>
+                </h2>
+                <div id="leavePolicy" class="accordion-collapse collapse" data-bs-parent="#rulesAccordion">
+                    <div class="accordion-body">
+                        <div class="row g-3">
+                            <div class="col-4 text-center">
+                                <div style="font-size:2rem; font-weight:700; color:var(--primary);">30</div>
+                                <div style="font-size:0.8rem; color:var(--gray-600);">Days Annual Vacation</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div style="font-size:2rem; font-weight:700; color:var(--gold-dark);">10</div>
+                                <div style="font-size:0.8rem; color:var(--gray-600);">Days Sick Leave/yr</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div style="font-size:2rem; font-weight:700; color:#22c55e;">7</div>
+                                <div style="font-size:0.8rem; color:var(--gray-600);">Days Preparatory Leave</div>
+                            </div>
+                        </div>
+                        <p class="mt-3 small text-muted">Note: Sick leave cannot be accumulated from year to year.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item border mb-2 rounded-3 overflow-hidden">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#libRules">
+                        <i class="fas fa-book me-2 text-success"></i>Library Rules
+                    </button>
+                </h2>
+                <div id="libRules" class="accordion-collapse collapse" data-bs-parent="#rulesAccordion">
+                    <div class="accordion-body" style="font-size:0.9rem; line-height:1.8;">
+                        Students must maintain silence in the library at all times. Library cards must be presented to borrow books. Books must be returned within the stipulated time. Damage or loss of library materials will result in replacement charges.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item border rounded-3 overflow-hidden">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#selectionComm">
+                        <i class="fas fa-users me-2 text-primary"></i>Selection Committee
+                    </button>
+                </h2>
+                <div id="selectionComm" class="accordion-collapse collapse" data-bs-parent="#rulesAccordion">
+                    <div class="accordion-body" style="font-size:0.9rem; line-height:1.8;">
+                        The selection committee includes: <strong>Chairman / Principal</strong>, Vice Principal, Senior Tutor, Chief Nursing Officer / Nursing Superintendent, and Administrative Staff.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== GALLERY PREVIEW ===== -->
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <div class="section-badge">Life at CMSN</div>
+                <h2 class="section-title">College <span>Gallery</span></h2>
+            </div>
+            <a href="{% url 'core:gallery' %}" class="btn-outline-custom">View All <i class="fas fa-arrow-right ms-1"></i></a>
+        </div>
+        {% if gallery %}
+        <div class="gallery-grid">
+            {% for img in gallery %}
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="setModalImg('{{ img.image.url }}', '{{ img.title }}')">
+                <img src="{{ img.image.url }}" alt="{{ img.title }}" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5 bg-light rounded-3">
+            <i class="fas fa-images fa-3x text-muted mb-3"></i>
+            <h5 class="text-muted">Gallery Coming Soon</h5>
+            <p class="text-muted small">Upload college photos through the admin panel to display them here.</p>
+            <a href="/admin/core/galleryimage/add/" class="btn-primary-custom mt-2" style="font-size:0.85rem; padding:10px 20px;">Upload Photos</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Gallery Modal -->
+<div class="modal fade" id="galleryModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0">
+                <h6 class="modal-title" id="galleryModalTitle"></h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0 text-center">
+                <img id="galleryModalImg" src="" alt="" style="max-width:100%; max-height:80vh; object-fit:contain;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== CTA ===== -->
+<section class="py-5">
+    <div class="container">
+        <div class="cta-section">
+            <div class="position-relative">
+                <p style="color:var(--gold); font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:0.8rem; margin-bottom:8px;">Admissions Open 2026–27</p>
+                <h2>Begin Your Healthcare Journey</h2>
+                <p>Join hundreds of students building careers in nursing & paramedical sciences under expert guidance at Gorakhpur's most trusted institution.</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="{% url 'admission:admission' %}" class="btn-hero-primary">
+                        <i class="fas fa-pen me-2"></i>Apply for Admission Now
+                    </a>
+                    <a href="{% url 'contact:contact' %}" class="btn-hero-outline">
+                        <i class="fas fa-phone me-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function setModalImg(url, title) {
+    document.getElementById('galleryModalImg').src = url;
+    document.getElementById('galleryModalTitle').textContent = title;
+}
+
+// Scroll reveal animation
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.style.opacity = 1;
+            e.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.facility-card, .training-hospital, .prog-card').forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+});
+</script>
+{% endblock %}
