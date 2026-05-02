@@ -5,79 +5,152 @@
 
 {% block extra_css %}
 .page-hero {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-    padding: 60px 0 40px;
+background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+padding: 60px 0 40px;
 }
 .form-card {
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+background: var(--white);
+border: 1px solid var(--gray-200);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
 }
 .form-card-header {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: #fff;
-    padding: 20px 28px;
-    border-radius: var(--radius) var(--radius) 0 0;
+background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+color: #fff;
+padding: 20px 28px;
+border-radius: var(--radius) var(--radius) 0 0;
 }
 .form-label { font-weight: 600; font-size: 0.85rem; color: var(--gray-700); margin-bottom: 4px; }
 .form-control, .form-select {
-    border: 1.5px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 0.88rem;
-    transition: border-color 0.2s;
+border: 1.5px solid var(--gray-200);
+border-radius: 8px;
+padding: 10px 14px;
+font-size: 0.88rem;
+transition: border-color 0.2s;
 }
 .form-control:focus, .form-select:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(26,86,167,0.1);
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(26,86,167,0.1);
 }
 .tab-btn {
-    flex: 1;
-    padding: 14px;
-    border: 2px solid var(--gray-200);
-    border-radius: 10px;
-    background: #fff;
-    font-weight: 700;
-    color: var(--gray-600);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.9rem;
+flex: 1;
+padding: 14px;
+border: 2px solid var(--gray-200);
+border-radius: 10px;
+background: #fff;
+font-weight: 700;
+color: var(--gray-600);
+cursor: pointer;
+transition: all 0.2s;
+font-size: 0.9rem;
 }
 .tab-btn.active {
-    border-color: var(--primary);
-    background: var(--primary);
-    color: #fff;
+border-color: var(--primary);
+background: var(--primary);
+color: #fff;
 }
 .submit-btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 1rem;
-    border: none;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: #fff;
-    transition: all 0.2s;
-    cursor: pointer;
+width: 100%;
+padding: 14px;
+border-radius: 10px;
+font-weight: 700;
+font-size: 1rem;
+border: none;
+background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+color: #fff;
+transition: all 0.2s;
+cursor: pointer;
 }
 .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,86,167,0.35); }
 .info-card {
-    border-radius: var(--radius);
-    padding: 24px;
-    height: 100%;
+border-radius: var(--radius);
+padding: 24px;
+height: 100%;
 }
 .step-item {
-    display: flex; gap: 14px; align-items: flex-start;
-    padding: 12px 0; border-bottom: 1px solid var(--gray-100);
+display: flex; gap: 14px; align-items: flex-start;
+padding: 12px 0; border-bottom: 1px solid var(--gray-100);
 }
 .step-item:last-child { border-bottom: none; }
 .step-num {
-    width: 32px; height: 32px; flex-shrink: 0;
-    background: var(--primary); color: #fff;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 0.85rem;
+width: 32px; height: 32px; flex-shrink: 0;
+background: var(--primary); color: #fff;
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-weight: 700; font-size: 0.85rem;
+}
+.help-card {
+background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+border-radius: var(--radius);
+padding: 32px;
+box-shadow: 0 12px 40px rgba(26,86,167,0.25);
+position: relative;
+overflow: hidden;
+border: 1px solid rgba(255,255,255,0.1);
+}
+.help-card::before {
+content: '';
+position: absolute;
+top: -50%; right: -50%;
+width: 300px; height: 300px;
+background: radial-gradient(circle, rgba(245,166,35,0.1) 0%, transparent 70%);
+border-radius: 50%;
+pointer-events: none;
+}
+.help-card-content { position: relative; z-index: 1; }
+.help-card h5 {
+color: #fff;
+font-weight: 700;
+font-size: 1.2rem;
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.help-card h5 i { color: var(--gold); font-size: 1.3rem; }
+.help-card > .help-card-content > p:first-of-type {
+color: rgba(255,255,255,0.8);
+font-size: 0.85rem;
+line-height: 1.6;
+margin-bottom: 24px;
+}
+.contact-buttons {
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-bottom: 20px;
+}
+.contact-btn {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 14px 16px;
+background: rgba(255,255,255,0.12);
+border: 1.5px solid rgba(255,255,255,0.2);
+border-radius: 10px;
+color: #fff;
+text-decoration: none;
+font-weight: 600;
+font-size: 0.95rem;
+transition: all 0.3s;
+cursor: pointer;
+}
+.contact-btn:hover {
+background: var(--gold);
+color: #000;
+border-color: var(--gold);
+transform: translateX(4px);
+box-shadow: 0 8px 20px rgba(245,166,35,0.3);
+}
+.contact-btn i { font-size: 1.1rem; }
+.whatsapp-note {
+background: rgba(34, 197, 94, 0.15);
+border-left: 3px solid #22c55e;
+padding: 12px 14px;
+border-radius: 6px;
+color: rgba(255,255,255,0.85);
+font-size: 0.8rem;
+font-weight: 500;
 }
 {% endblock %}
 
@@ -87,7 +160,8 @@
     <div class="container">
         <div class="section-badge" style="background:rgba(255,255,255,0.15); color:#fff;">2026–27 Session</div>
         <h1 class="section-title" style="color:#fff;">Admission <span style="color:var(--gold);">Open</span></h1>
-        <p style="color:rgba(255,255,255,0.75); max-width:500px;">Fill in the form below to apply for GNM or ANM programmes. Our team will contact you for further steps.</p>
+        <p style="color:rgba(255,255,255,0.75); max-width:500px;">Fill in the form below to apply for GNM or ANM
+            programmes. Our team will contact you for further steps.</p>
     </div>
 </div>
 
@@ -111,7 +185,8 @@
                     <div class="form-card">
                         <div class="form-card-header">
                             <h4 class="mb-0"><i class="fas fa-graduation-cap me-2"></i>Admission Enquiry Form</h4>
-                            <p class="mb-0 mt-1" style="opacity:0.75; font-size:0.85rem;">Fill all fields accurately. Fields marked * are mandatory.</p>
+                            <p class="mb-0 mt-1" style="opacity:0.75; font-size:0.85rem;">Fill all fields accurately.
+                                Fields marked * are mandatory.</p>
                         </div>
                         <div class="p-4">
                             <form method="POST">
@@ -121,7 +196,9 @@
                                     <div class="col-md-6">
                                         <label class="form-label">Full Name *</label>
                                         {{ form.full_name }}
-                                        {% if form.full_name.errors %}<div class="text-danger small mt-1">{{ form.full_name.errors.0 }}</div>{% endif %}
+                                        {% if form.full_name.errors %}<div class="text-danger small mt-1">
+                                            {{ form.full_name.errors.0 }}
+                                        </div>{% endif %}
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Father's Name *</label>
@@ -179,7 +256,8 @@
                     <div class="form-card">
                         <div class="form-card-header" style="background: linear-gradient(135deg, #16a34a, #15803d);">
                             <h4 class="mb-0"><i class="fas fa-bed me-2"></i>Hostel Admission Form</h4>
-                            <p class="mb-0 mt-1" style="opacity:0.75; font-size:0.85rem;">Apply for hostel accommodation along with your admission.</p>
+                            <p class="mb-0 mt-1" style="opacity:0.75; font-size:0.85rem;">Apply for hostel accommodation
+                                along with your admission.</p>
                         </div>
                         <div class="p-4">
                             <form method="POST">
@@ -215,7 +293,8 @@
                                         {{ hostel_form.address }}
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="submit-btn" style="background: linear-gradient(135deg, #16a34a, #15803d);">
+                                        <button type="submit" class="submit-btn"
+                                            style="background: linear-gradient(135deg, #16a34a, #15803d);">
                                             <i class="fas fa-paper-plane me-2"></i>Submit Hostel Application
                                         </button>
                                     </div>
@@ -232,33 +311,45 @@
                     <h5 class="fw-bold mb-3"><i class="fas fa-list-check me-2 text-primary"></i>Application Steps</h5>
                     <div class="step-item">
                         <div class="step-num">1</div>
-                        <div style="font-size:0.87rem; line-height:1.6;"><strong>Fill the form</strong> with your accurate personal and academic details.</div>
+                        <div style="font-size:0.87rem; line-height:1.6;"><strong>Fill the form</strong> with your
+                            accurate personal and academic details.</div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">2</div>
-                        <div style="font-size:0.87rem; line-height:1.6;"><strong>Receive confirmation</strong> — our team will call you within 2 working days.</div>
+                        <div style="font-size:0.87rem; line-height:1.6;"><strong>Receive confirmation</strong> — our
+                            team will call you within 2 working days.</div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">3</div>
-                        <div style="font-size:0.87rem; line-height:1.6;"><strong>Document verification</strong> — bring original certificates to college.</div>
+                        <div style="font-size:0.87rem; line-height:1.6;"><strong>Document verification</strong> — bring
+                            original certificates to college.</div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">4</div>
-                        <div style="font-size:0.87rem; line-height:1.6;"><strong>Secure your seat</strong> — complete fee payment and enrollment.</div>
+                        <div style="font-size:0.87rem; line-height:1.6;"><strong>Secure your seat</strong> — complete
+                            fee payment and enrollment.</div>
                     </div>
                 </div>
 
-                <div class="info-card" style="background: var(--primary-dark); color:#fff;">
-                    <h5 class="fw-bold mb-3" style="color:#fff;"><i class="fas fa-phone me-2" style="color:var(--gold);"></i>Need Help?</h5>
-                    <p style="font-size:0.85rem; opacity:0.8; margin-bottom:16px;">Our admission team is available Mon–Sat, 9AM to 5PM to assist you.</p>
-                    <a href="tel:+919839064502" class="d-block text-white fw-bold mb-2" style="font-size:1.1rem;">
-                        <i class="fas fa-phone me-2" style="color:var(--gold);"></i>+91 98390 64502
-                    </a>
-                    <a href="mailto:cmsnnursing@gmail.com" class="d-block" style="color:rgba(255,255,255,0.7); font-size:0.85rem;">
-                        <i class="fas fa-envelope me-2" style="color:var(--gold);"></i>cmsnnursing@gmail.com
-                    </a>
-                    <hr style="border-color:rgba(255,255,255,0.15);">
-                    <p style="font-size:0.8rem; opacity:0.6; margin:0;">WhatsApp also available on the same number.</p>
+                <div class="help-card">
+                    <div class="help-card-content">
+                        <h5><i class="fas fa-headset"></i>Need Help?</h5>
+                        <p>Our admission team is available Mon–Sat, 9AM to 5PM to assist you with any queries about
+                            admissions.</p>
+                        <div class="contact-buttons">
+                            <a href="tel:+919839064502" class="contact-btn">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 98390 64502</span>
+                            </a>
+                            <a href="mailto:cmsnnursing@gmail.com" class="contact-btn">
+                                <i class="fas fa-envelope"></i>
+                                <span>cmsnnursing@gmail.com</span>
+                            </a>
+                        </div>
+                        <div class="whatsapp-note">
+                            <i class="fas fa-check-circle me-2"></i>WhatsApp available on the same phone number
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -268,18 +359,18 @@
 
 {% block extra_js %}
 <script>
-function switchTab(tab) {
-    if (tab === 'admission') {
-        document.getElementById('admissionForm').style.display = 'block';
-        document.getElementById('hostelForm').style.display = 'none';
-        document.getElementById('admBtn').classList.add('active');
-        document.getElementById('hostBtn').classList.remove('active');
-    } else {
-        document.getElementById('admissionForm').style.display = 'none';
-        document.getElementById('hostelForm').style.display = 'block';
-        document.getElementById('admBtn').classList.remove('active');
-        document.getElementById('hostBtn').classList.add('active');
+    function switchTab(tab) {
+        if (tab === 'admission') {
+            document.getElementById('admissionForm').style.display = 'block';
+            document.getElementById('hostelForm').style.display = 'none';
+            document.getElementById('admBtn').classList.add('active');
+            document.getElementById('hostBtn').classList.remove('active');
+        } else {
+            document.getElementById('admissionForm').style.display = 'none';
+            document.getElementById('hostelForm').style.display = 'block';
+            document.getElementById('admBtn').classList.remove('active');
+            document.getElementById('hostBtn').classList.add('active');
+        }
     }
-}
 </script>
 {% endblock %}
